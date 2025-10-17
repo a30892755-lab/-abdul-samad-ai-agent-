@@ -1,3 +1,4 @@
+```html name=index.html url=https://github.com/a30892755-lab/-abdul-samad-ai-agent-/blob/557feeb26e9773544dd684a53b9546ac7fd9d6c5/index.html
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -5,158 +6,460 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Abdul Samad - Info Portal (Bigger Chat)</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{
-  font-family:'Poppins',sans-serif;
-  background:linear-gradient(-45deg,#ee7752,#e73c7e,#23a6d5,#23d5ab);
-  background-size:400% 400%;
-  animation:gradientBG 15s ease infinite;
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-}
-@keyframes gradientBG{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  /* General Styles */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow: hidden; /* Prevent scrollbars */
+  }
+  @keyframes gradientBG {
+    0% { background-position: 0% 50% }
+    50% { background-position: 100% 50% }
+    100% { background-position: 0% 50% }
+  }
 
-.container{
-  width:100%;
-  max-width:1000px;
-  background:rgba(255,255,255,0.95);
-  border-radius:20px;
-  box-shadow:0 20px 50px rgba(0,0,0,0.3);
-  overflow:hidden;
-  backdrop-filter:blur(10px);
-  border:1px solid rgba(255,255,255,0.2);
-}
-header{
-  background:linear-gradient(135deg,#667eea,#764ba2);
-  color:#fff;
-  text-align:center;
-  padding:30px 20px;
-}
-header h1{font-size:2.5rem;margin-bottom:10px;}
-header p{font-size:1.1rem;opacity:.9;}
+  .container {
+    width: 100%;
+    max-width: 1200px; /* Increased container width */
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack items vertically */
+  }
 
-.profile-section{padding:30px;background:linear-gradient(135deg,#f5f7fa,#c3cfe2);}
-.profile-card{background:white;padding:25px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.1);}
-.profile-card h2{margin-bottom:20px;color:#2c3e50;border-bottom:3px solid #3498db;padding-bottom:10px;}
-.profile-info{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;}
-.profile-info p{background:linear-gradient(135deg,#667eea,#764ba2);color:white;padding:15px;border-radius:10px;}
+  /* Header Styles */
+  header {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    text-align: center;
+    padding: 30px 20px;
+  }
+  header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+  header p { font-size: 1.1rem; opacity: .9; }
 
-.chat-section{padding:30px;background:white;}
-.chat-container{border:2px solid #e0e0e0;border-radius:15px;overflow:hidden;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
-.chat-messages{
-  height:450px; /* 📦 BIGGER CHAT BOX */
-  overflow-y:auto;
-  padding:20px;
-  background:linear-gradient(135deg,#f0f4f8,#d9e2ec);
-}
-.message{margin:15px 0;padding:15px 20px;border-radius:20px;max-width:80%;line-height:1.5;}
-.bot-message{background:linear-gradient(135deg,#3498db,#2980b9);color:white;margin-right:auto;}
-.user-message{background:linear-gradient(135deg,#2ecc71,#27ae60);color:white;margin-left:auto;}
-.input-section{display:flex;padding:20px;background:white;border-top:1px solid #e0e0e0;gap:10px;}
-#user-input{flex:1;padding:15px 20px;border:2px solid #bdc3c7;border-radius:25px;font-size:16px;}
-button{background:linear-gradient(135deg,#e74c3c,#c0392b);color:white;border:none;padding:15px 25px;border-radius:25px;cursor:pointer;font-weight:bold;}
+  /* Main Content Area */
+  main {
+    display: flex;
+    flex-grow: 1; /* Allow main to take up remaining vertical space */
+  }
 
-.quick-actions{padding:30px;background:linear-gradient(135deg,#f8f9fa,#e9ecef);border-top:1px solid #dee2e6;}
-.quick-actions h3{text-align:center;margin-bottom:20px;font-size:1.5rem;}
-.action-buttons{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;}
-.action-buttons button{background:linear-gradient(135deg,#9b59b6,#8e44ad);padding:15px;border:none;border-radius:25px;color:white;}
+  /* Profile Section Styles */
+  .profile-section {
+    padding: 30px;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    width: 30%; /* Fixed width for the profile section */
+  }
+  .profile-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+  .profile-card h2 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+  }
+  .profile-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+  }
+  .profile-info p {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+  }
 
-/* 📱 Mobile Responsive */
-@media (max-width:768px){
-  body{padding:10px;}
-  .container{border-radius:10px;}
-  header h1{font-size:1.8rem;}
-  header p{font-size:1rem;}
-  .profile-info{grid-template-columns:1fr;}
-  .chat-messages{height:420px;} /* Mobile Chat Size Increased */
-  .message{max-width:90%;font-size:0.9rem;}
-  button{padding:12px 18px;font-size:0.9rem;}
-  #user-input{font-size:14px;padding:12px 15px;}
-  .action-buttons{grid-template-columns:1fr;}
-}
+  /* Chat Section Styles */
+  .chat-section {
+    padding: 30px;
+    background: white;
+    width: 40%; /* Chat section takes up 40% */
+  }
+  .chat-container {
+    border: 2px solid #e0e0e0;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  .chat-messages {
+    height: 450px; /* 📦 BIGGER CHAT BOX */
+    overflow-y: auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+  }
+  .message {
+    margin: 15px 0;
+    padding: 15px 20px;
+    border-radius: 20px;
+    max-width: 80%;
+    line-height: 1.5;
+  }
+  .bot-message {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    margin-right: auto;
+  }
+  .user-message {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+    margin-left: auto;
+  }
+  .input-section {
+    display: flex;
+    padding: 20px;
+    background: white;
+    border-top: 1px solid #e0e0e0;
+    gap: 10px;
+  }
+  #user-input {
+    flex: 1;
+    padding: 15px 20px;
+    border: 2px solid #bdc3c7;
+    border-radius: 25px;
+    font-size: 16px;
+  }
+  button {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+  }
 
-/* 💻 Laptop/Desktop View */
-@media (min-width:1024px){
-  .container{max-width:1100px;}
-  header h1{font-size:3rem;}
-  header p{font-size:1.3rem;}
-  .profile-info p{font-size:1.1rem;}
-  .chat-messages{height:550px;} /* Laptop Chat Size Increased */
-  button{font-size:1rem;}
-}
+  /* Quick Actions Styles */
+  .quick-actions {
+    padding: 30px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-top: 1px solid #dee2e6;
+    width: 30%; /* Quick actions take up 30% */
+  }
+  .quick-actions h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+  }
+  .action-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  .action-buttons button {
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+    padding: 15px;
+    border: none;
+    border-radius: 25px;
+    color: white;
+  }
+
+  /* Pong Game Styles */
+  #pong-container {
+    position: absolute; /* Positioned over the entire page */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    z-index: 1000; /* Ensure it's on top */
+  }
+
+  #pong-canvas {
+    background-color: #000;
+    border: 2px solid #fff;
+  }
+
+  #scoreboard {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 2em;
+    z-index: 1001; /* Ensure it's on top of the canvas */
+  }
+
+  /* 📱 Mobile Responsive */
+  @media (max-width: 768px) {
+    body { padding: 10px; }
+    .container {
+      border-radius: 10px;
+      flex-direction: column; /* Stack in mobile view */
+    }
+    header h1 { font-size: 1.8rem; }
+    header p { font-size: 1rem; }
+    main {
+      flex-direction: column; /* Stack main sections */
+    }
+    .profile-section,
+    .chat-section,
+    .quick-actions {
+      width: 100%; /* Each section takes full width */
+      padding: 20px; /* Reduce padding for mobile */
+    }
+    .profile-info { grid-template-columns: 1fr; }
+    .chat-messages { height: 300px; } /* Adjust chat height */
+    .message { max-width: 90%; font-size: 0.9rem; }
+    button { padding: 12px 18px; font-size: 0.9rem; }
+    #user-input { font-size: 14px; padding: 12px 15px; }
+    .action-buttons { grid-template-columns: 1fr; }
+  }
+
+  /* 💻 Laptop/Desktop View */
+  @media (min-width: 1024px) {
+    .container { max-width: 1200px; }
+    header h1 { font-size: 3rem; }
+    header p { font-size: 1.3rem; }
+    .profile-info p { font-size: 1.1rem; }
+    .chat-messages { height: 550px; }
+    button { font-size: 1rem; }
+  }
 </style>
 </head>
 <body>
-<div class="container">
-<header>
-  <h1>🤖 ABDUL SAMAD INFO PORTAL</h1>
-  <p>Get Information About Abdul Samad - Young Web Developer</p>
-</header>
+  <div class="container">
+    <header>
+      <h1>🤖 ABDUL SAMAD INFO PORTAL</h1>
+      <p>Get Information About Abdul Samad - Young Web Developer</p>
+    </header>
 
-<div class="profile-section">
-  <div class="profile-card">
-    <h2>👤 About Abdul Samad</h2>
-    <div class="profile-info">
-      <p><strong>Name:</strong> ABDUL SAMAD</p>
-      <p><strong>Age:</strong> 12 years</p>
-      <p><strong>DOB:</strong> 19-6-2013</p>
-      <p><strong>Father:</strong> ABDULLAH</p>
-      <p><strong>Profession:</strong> Web Development</p>
-    </div>
-  </div>
-</div>
-
-<div class="chat-section">
-  <div class="chat-container">
-    <div id="chat-messages" class="chat-messages">
-      <div class="message bot-message">
-        👋 Welcome to Abdul Samad Information Portal!<br>
-        Ask me anything about Abdul Samad 🤖
+    <main>
+      <div class="profile-section">
+        <div class="profile-card">
+          <h2>👤 About Abdul Samad</h2>
+          <div class="profile-info">
+            <p><strong>Name:</strong> ABDUL SAMAD</p>
+            <p><strong>Age:</strong> 12 years</p>
+            <p><strong>DOB:</strong> 19-6-2013</p>
+            <p><strong>Father:</strong> ABDULLAH</p>
+            <p><strong>Profession:</strong> Web Development</p>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="input-section">
-      <input id="user-input" type="text" placeholder="💬 Ask about Abdul Samad...">
-      <button onclick="sendMessage()">🚀 Send</button>
-    </div>
-  </div>
-</div>
 
-<div class="quick-actions">
-  <h3>⚡ Quick Information</h3>
-  <div class="action-buttons">
-    <button onclick="showPersonalInfo()">👤 Personal Info</button>
-    <button onclick="showSkills()">💻 Skills</button>
-    <button onclick="showProjects()">🚀 Projects</button>
-    <button onclick="showContact()">📞 Contact</button>
-  </div>
-</div>
-</div>
+      <div class="chat-section">
+        <div class="chat-container">
+          <div id="chat-messages" class="chat-messages">
+            <div class="message bot-message">
+              👋 Welcome to Abdul Samad Information Portal!<br>
+              Ask me anything about Abdul Samad 🤖
+            </div>
+          </div>
+          <div class="input-section">
+            <input id="user-input" type="text" placeholder="💬 Ask about Abdul Samad...">
+            <button onclick="sendMessage()">🚀 Send</button>
+          </div>
+        </div>
+      </div>
 
-<script>
-function addMessage(text,isUser=false){
-  const chat=document.getElementById("chat-messages");
-  const div=document.createElement("div");
-  div.className=isUser?"message user-message":"message bot-message";
-  div.innerHTML=text;
-  chat.appendChild(div);
-  chat.scrollTop=chat.scrollHeight;
-}
-function sendMessage(){
-  const inp=document.getElementById("user-input");
-  const msg=inp.value.trim();
-  if(!msg)return;
-  addMessage(msg,true);
-  inp.value="";
-  setTimeout(()=>{addMessage("🤖 This is a demo chat for Abdul Samad Info Portal!")},800);
-}
-function showPersonalInfo(){addMessage("👤 Name: Abdul Samad<br>🎂 Age: 12<br>📅 DOB: 19-6-2013<br>👨‍👦 Father: Abdullah<br>📚 Profession: Web Developer");}
-function showSkills(){addMessage("💻 Skills:<br>• HTML<br>• CSS<br>• JavaScript<br>🚀 Learning: Frontend Development");}
-function showProjects(){addMessage("🚀 Projects:<br>• Portfolio Website<br>• Calculator App<br>• Quiz Game<br>🏆 Learning Projects");}
-function showContact(){addMessage("📞 Contact Abdul Samad for learning and collaboration!");}
-</script>
+      <div class="quick-actions">
+        <h3>⚡ Quick Information</h3>
+        <div class="action-buttons">
+          <button onclick="showPersonalInfo()">👤 Personal Info</button>
+          <button onclick="showSkills()">💻 Skills</button>
+          <button onclick="showProjects()">🚀 Projects</button>
+          <button onclick="showContact()">📞 Contact</button>
+          <button onclick="startGame()">🕹️ Play Pong!</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="pong-container" style="display: none;">
+    <div id="scoreboard">
+      <span id="player-score">0</span> - <span id="computer-score">0</span>
+    </div>
+    <canvas id="pong-canvas" width="600" height="400"></canvas>
+  </div>
+
+  <script>
+    // Chat Portal Functions
+    function addMessage(text, isUser = false) {
+      const chat = document.getElementById("chat-messages");
+      const div = document.createElement("div");
+      div.className = isUser ? "message user-message" : "message bot-message";
+      div.innerHTML = text;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function sendMessage() {
+      const inp = document.getElementById("user-input");
+      const msg = inp.value.trim();
+      if (!msg) return;
+      addMessage(msg, true);
+      inp.value = "";
+      setTimeout(() => {
+        addMessage("🤖 This is a demo chat for Abdul Samad Info Portal!")
+      }, 800);
+    }
+
+    function showPersonalInfo() {
+      addMessage("👤 Name: Abdul Samad<br>🎂 Age: 12<br>📅 DOB: 19-6-2013<br>👨‍👦 Father: Abdullah<br>📚 Profession: Web Developer");
+    }
+
+    function showSkills() {
+      addMessage("💻 Skills:<br>• HTML<br>• CSS<br>• JavaScript<br>🚀 Learning: Frontend Development");
+    }
+
+    function showProjects() {
+      addMessage("🚀 Projects:<br>• Portfolio Website<br>• Calculator App<br>• Quiz Game<br>🏆 Learning Projects");
+    }
+
+    function showContact() {
+      addMessage("📞 Contact Abdul Samad for learning and collaboration!");
+    }
+
+    // Pong Game Functions
+    let canvas, ctx, ballX, ballY, ballSpeedX, ballSpeedY, playerY, computerY, playerScore, computerScore;
+    const PADDLE_HEIGHT = 100;
+    const PADDLE_WIDTH = 10;
+    const BALL_SIZE = 10;
+
+    function startGame() {
+      document.getElementById('pong-container').style.display = 'flex';
+      canvas = document.getElementById('pong-canvas');
+      ctx = canvas.getContext('2d');
+
+      ballX = canvas.width / 2;
+      ballY = canvas.height / 2;
+      ballSpeedX = 5;
+      ballSpeedY = 5;
+      playerY = canvas.height / 2 - PADDLE_HEIGHT / 2;
+      computerY = canvas.height / 2 - PADDLE_HEIGHT / 2;
+      playerScore = 0;
+      computerScore = 0;
+
+      canvas.addEventListener('mousemove', function(evt) {
+        playerY = evt.clientY - canvas.offsetTop - PADDLE_HEIGHT / 2;
+      });
+
+      document.addEventListener('keydown', function(evt) {
+        if (evt.key === 'ArrowUp') {
+          playerY -= 30; // Move paddle up
+        } else if (evt.key === 'ArrowDown') {
+          playerY += 30; // Move paddle down
+        }
+      });
+
+      // Ensure paddles stay within the bounds
+      function clamp(value, min, max) {
+        return Math.min(Math.max(value, min), max);
+      }
+
+      function update() {
+        // Move paddles based on mouse/arrow keys
+        playerY = clamp(playerY, 0, canvas.height - PADDLE_HEIGHT);
+
+        // Move ball
+        ballX += ballSpeedX;
+        ballY += ballSpeedY;
+
+        // Computer AI
+        computerY += (ballY - computerY - PADDLE_HEIGHT / 2) * 0.1;
+        computerY = clamp(computerY, 0, canvas.height - PADDLE_HEIGHT);
+
+
+        // Bounce off top and bottom
+        if (ballY < 0 || ballY > canvas.height) {
+          ballSpeedY = -ballSpeedY;
+        }
+
+        // Bounce off paddles
+        if (ballX < PADDLE_WIDTH && ballY > playerY && ballY < playerY + PADDLE_HEIGHT) {
+          ballSpeedX = -ballSpeedX;
+          let deltaY = ballY - (playerY + PADDLE_HEIGHT / 2);
+          ballSpeedY = deltaY * 0.3;
+        }
+
+        if (ballX > canvas.width - PADDLE_WIDTH && ballY > computerY && ballY < computerY + PADDLE_HEIGHT) {
+          ballSpeedX = -ballSpeedX;
+          let deltaY = ballY - (computerY + PADDLE_HEIGHT / 2);
+          ballSpeedY = deltaY * 0.3;
+        }
+
+
+        // Score
+        if (ballX < 0) {
+          computerScore++;
+          resetBall();
+        }
+        if (ballX > canvas.width) {
+          playerScore++;
+          resetBall();
+        }
+
+        // Update Scoreboard
+        document.getElementById('player-score').textContent = playerScore;
+        document.getElementById('computer-score').textContent = computerScore;
+
+
+        // Draw everything
+        draw();
+      }
+
+      function draw() {
+        // Clear canvas
+        ctx.fillStyle = '#000';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Draw paddles
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, playerY, PADDLE_WIDTH, PADDLE_HEIGHT);
+        ctx.fillRect(canvas.width - PADDLE_WIDTH, computerY, PADDLE_WIDTH, PADDLE_HEIGHT);
+
+        // Draw ball
+        ctx.beginPath();
+        ctx.arc(ballX, ballY, BALL_SIZE, 0, Math.PI * 2);
+        ctx.fillStyle = '#fff';
+        ctx.fill();
+      }
+
+
+      function resetBall() {
+        ballX = canvas.width / 2;
+        ballY = canvas.height / 2;
+        ballSpeedX = -ballSpeedX; // Reverse direction
+        ballSpeedY = 5; // Reset vertical speed
+      }
+
+      // Game loop
+      setInterval(update, 1000 / 60);
+
+      // Close Pong
+      document.addEventListener('keydown', function(evt) {
+        if (evt.key === 'Escape') {
+          document.getElementById('pong-container').style.display = 'none';
+          resetBall();
+          playerScore = 0;
+          computerScore = 0;
+          document.getElementById('player-score').textContent = playerScore;
+          document.getElementById('computer-score').textContent = computerScore;
+        }
+      });
+
+    }
+  </script>
 </body>
 </html>
+```
                                                                                                                                                                                  
