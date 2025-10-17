@@ -1,464 +1,593 @@
-```html name=index.html url=https://github.com/a30892755-lab/-abdul-samad-ai-agent-/blob/557feeb26e9773544dd684a53b9546ac7fd9d6c5/index.html
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Abdul Samad - Info Portal (Bigger Chat)</title>
-<style>
-  /* General Styles */
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    overflow: hidden; /* Prevent scrollbars */
-  }
-  @keyframes gradientBG {
-    0% { background-position: 0% 50% }
-    50% { background-position: 100% 50% }
-    100% { background-position: 0% 50% }
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdul Samad - Colorful Rambo AI Agent</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
 
-  .container {
-    width: 100%;
-    max-width: 1200px; /* Increased container width */
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    display: flex; /* Use flexbox for layout */
-    flex-direction: column; /* Stack items vertically */
-  }
+        html, body {
+            height: 100%;
+            overflow: auto;
+        }
 
-  /* Header Styles */
-  header {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: #fff;
-    text-align: center;
-    padding: 30px 20px;
-  }
-  header h1 { font-size: 2.5rem; margin-bottom: 10px; }
-  header p { font-size: 1.1rem; opacity: .9; }
+        body {
+            background: linear-gradient(135deg, #ff0000, #ff8000, #ffff00, #00ff00, #00ffff, #0000ff, #8000ff, #ff00ff);
+            background-size: 400% 400%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            animation: rainbowBackground 6s ease infinite;
+            overflow: auto;
+        }
 
-  /* Main Content Area */
-  main {
-    display: flex;
-    flex-grow: 1; /* Allow main to take up remaining vertical space */
-  }
+        @keyframes rainbowBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-  /* Profile Section Styles */
-  .profile-section {
-    padding: 30px;
-    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-    width: 30%; /* Fixed width for the profile section */
-  }
-  .profile-card {
-    background: white;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  }
-  .profile-card h2 {
-    margin-bottom: 20px;
-    color: #2c3e50;
-    border-bottom: 3px solid #3498db;
-    padding-bottom: 10px;
-  }
-  .profile-info {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
-  }
-  .profile-info p {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    padding: 15px;
-    border-radius: 10px;
-  }
+        /* Colorful Fog Effect */
+        .fog-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
 
-  /* Chat Section Styles */
-  .chat-section {
-    padding: 30px;
-    background: white;
-    width: 40%; /* Chat section takes up 40% */
-  }
-  .chat-container {
-    border: 2px solid #e0e0e0;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  }
-  .chat-messages {
-    height: 450px; /* 📦 BIGGER CHAT BOX */
-    overflow-y: auto;
-    padding: 20px;
-    background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
-  }
-  .message {
-    margin: 15px 0;
-    padding: 15px 20px;
-    border-radius: 20px;
-    max-width: 80%;
-    line-height: 1.5;
-  }
-  .bot-message {
-    background: linear-gradient(135deg, #3498db, #2980b9);
-    color: white;
-    margin-right: auto;
-  }
-  .user-message {
-    background: linear-gradient(135deg, #2ecc71, #27ae60);
-    color: white;
-    margin-left: auto;
-  }
-  .input-section {
-    display: flex;
-    padding: 20px;
-    background: white;
-    border-top: 1px solid #e0e0e0;
-    gap: 10px;
-  }
-  #user-input {
-    flex: 1;
-    padding: 15px 20px;
-    border: 2px solid #bdc3c7;
-    border-radius: 25px;
-    font-size: 16px;
-  }
-  button {
-    background: linear-gradient(135deg, #e74c3c, #c0392b);
-    color: white;
-    border: none;
-    padding: 15px 25px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: bold;
-  }
+        .fog {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255, 0, 0, 0.3) 2%, transparent 15%),
+                radial-gradient(circle at 70% 70%, rgba(0, 255, 0, 0.3) 2%, transparent 15%),
+                radial-gradient(circle at 50% 20%, rgba(0, 0, 255, 0.3) 2%, transparent 15%),
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 0, 0.3) 2%, transparent 15%),
+                radial-gradient(circle at 80% 40%, rgba(255, 0, 255, 0.3) 2%, transparent 15%);
+            animation: fogMove 15s linear infinite;
+        }
 
-  /* Quick Actions Styles */
-  .quick-actions {
-    padding: 30px;
-    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-    border-top: 1px solid #dee2e6;
-    width: 30%; /* Quick actions take up 30% */
-  }
-  .quick-actions h3 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-  }
-  .action-buttons {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-  }
-  .action-buttons button {
-    background: linear-gradient(135deg, #9b59b6, #8e44ad);
-    padding: 15px;
-    border: none;
-    border-radius: 25px;
-    color: white;
-  }
+        .fog2 {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 60% 40%, rgba(0, 255, 255, 0.2) 3%, transparent 20%),
+                radial-gradient(circle at 40% 60%, rgba(255, 165, 0, 0.2) 3%, transparent 20%),
+                radial-gradient(circle at 90% 10%, rgba(128, 0, 255, 0.2) 3%, transparent 20%);
+            animation: fogMove 20s linear infinite reverse;
+        }
 
-  /* Pong Game Styles */
-  #pong-container {
-    position: absolute; /* Positioned over the entire page */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
-    z-index: 1000; /* Ensure it's on top */
-  }
+        @keyframes fogMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-50%, -50%); }
+        }
 
-  #pong-canvas {
-    background-color: #000;
-    border: 2px solid #fff;
-  }
+        .chat-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 6px solid;
+            border-image: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #00ff00, #00ffff, #0000ff, #8000ff, #ff00ff) 1;
+            border-radius: 25px;
+            padding: 35px;
+            width: 100%;
+            max-width: 850px;
+            box-shadow: 
+                0 0 60px rgba(255, 0, 0, 0.8),
+                0 0 120px rgba(0, 255, 0, 0.6),
+                0 0 180px rgba(0, 0, 255, 0.4),
+                inset 0 0 40px rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 2;
+            animation: rainbowBorder 3s linear infinite;
+            margin: 20px;
+            overflow: visible;
+        }
 
-  #scoreboard {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    font-size: 2em;
-    z-index: 1001; /* Ensure it's on top of the canvas */
-  }
+        @keyframes rainbowBorder {
+            0% { border-image: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #00ff00, #00ffff, #0000ff, #8000ff, #ff00ff) 1; }
+            100% { border-image: linear-gradient(405deg, #ff0000, #ff8000, #ffff00, #00ff00, #00ffff, #0000ff, #8000ff, #ff00ff) 1; }
+        }
 
-  /* 📱 Mobile Responsive */
-  @media (max-width: 768px) {
-    body { padding: 10px; }
-    .container {
-      border-radius: 10px;
-      flex-direction: column; /* Stack in mobile view */
-    }
-    header h1 { font-size: 1.8rem; }
-    header p { font-size: 1rem; }
-    main {
-      flex-direction: column; /* Stack main sections */
-    }
-    .profile-section,
-    .chat-section,
-    .quick-actions {
-      width: 100%; /* Each section takes full width */
-      padding: 20px; /* Reduce padding for mobile */
-    }
-    .profile-info { grid-template-columns: 1fr; }
-    .chat-messages { height: 300px; } /* Adjust chat height */
-    .message { max-width: 90%; font-size: 0.9rem; }
-    button { padding: 12px 18px; font-size: 0.9rem; }
-    #user-input { font-size: 14px; padding: 12px 15px; }
-    .action-buttons { grid-template-columns: 1fr; }
-  }
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
 
-  /* 💻 Laptop/Desktop View */
-  @media (min-width: 1024px) {
-    .container { max-width: 1200px; }
-    header h1 { font-size: 3rem; }
-    header p { font-size: 1.3rem; }
-    .profile-info p { font-size: 1.1rem; }
-    .chat-messages { height: 550px; }
-    button { font-size: 1rem; }
-  }
-</style>
+        .rainbow-title {
+            font-size: 4em;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #00ff00, #00ffff, #0000ff, #8000ff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            animation: titleRainbow 2s linear infinite;
+            letter-spacing: 2px;
+        }
+
+        @keyframes titleRainbow {
+            0% { background: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #00ff00, #00ffff, #0000ff, #8000ff, #ff00ff); -webkit-background-clip: text; }
+            100% { background: linear-gradient(405deg, #ff0000, #ff8000, #ffff00, #00ff00, #00ffff, #0000ff, #8000ff, #ff00ff); -webkit-background-clip: text; }
+        }
+
+        .colorful-tagline {
+            color: #333;
+            font-size: 1.6em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: taglineColor 3s ease-in-out infinite alternate;
+            padding: 10px 20px;
+            border-radius: 15px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes taglineColor {
+            0% { background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff); -webkit-background-clip: text; }
+            100% { background: linear-gradient(45deg, #0000ff, #ff0000, #00ff00); -webkit-background-clip: text; }
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 35px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 6px solid;
+            border-image: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #00ff00) 1;
+            object-fit: cover;
+            box-shadow: 
+                0 0 40px rgba(255, 0, 0, 0.8),
+                0 0 80px rgba(0, 255, 0, 0.6),
+                0 0 120px rgba(0, 0, 255, 0.4);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            animation: imageRainbow 4s linear infinite;
+        }
+
+        @keyframes imageRainbow {
+            0% { border-image: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #00ff00) 1; }
+            25% { border-image: linear-gradient(45deg, #ffff00, #00ff00, #00ffff, #0000ff) 1; }
+            50% { border-image: linear-gradient(45deg, #00ffff, #0000ff, #8000ff, #ff00ff) 1; }
+            75% { border-image: linear-gradient(45deg, #8000ff, #ff00ff, #ff0000, #ff8000) 1; }
+            100% { border-image: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #00ff00) 1; }
+        }
+
+        .profile-image:hover {
+            transform: scale(1.15) rotate(8deg);
+            box-shadow: 
+                0 0 60px rgba(255, 0, 255, 0.9),
+                0 0 120px rgba(0, 255, 255, 0.7),
+                0 0 180px rgba(255, 255, 0, 0.5);
+        }
+
+        .profile-text {
+            text-align: left;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.3), rgba(0, 255, 0, 0.3), rgba(0, 0, 255, 0.3));
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            color: #000;
+            border: 3px solid;
+            border-image: linear-gradient(45deg, #ff0000, #00ff00, #0000ff) 1;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(15px);
+            font-weight: 600;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .info-card:hover::before {
+            left: 100%;
+        }
+
+        .info-card:hover {
+            transform: translateY(-8px) scale(1.08);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .info-card strong {
+            display: block;
+            font-size: 1em;
+            color: #000;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff0000, #0000ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .info-card span {
+            font-size: 1.3em;
+            font-weight: 800;
+            color: #000;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .input-section {
+            margin-bottom: 30px;
+        }
+
+        #question {
+            width: 100%;
+            padding: 20px 30px;
+            border: 4px solid;
+            border-image: linear-gradient(45deg, #ff0000, #ffff00, #00ff00) 1;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #000;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        #question:focus {
+            outline: none;
+            border-image: linear-gradient(45deg, #0000ff, #ff00ff, #ff0000) 1;
+            box-shadow: 0 0 30px rgba(0, 0, 255, 0.5);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        #question::placeholder {
+            color: #666;
+            font-weight: 600;
+        }
+
+        button {
+            width: 100%;
+            padding: 22px;
+            border: none;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #ff0000, #ff8000, #ffff00, #00ff00, #00ffff, #0000ff, #8000ff, #ff00ff);
+            background-size: 400% 400%;
+            color: #fff;
+            font-size: 1.5em;
+            font-weight: 900;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            overflow: hidden;
+            animation: buttonRainbow 2s ease infinite;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes buttonRainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            color: #fff;
+        }
+
+        #response {
+            margin-top: 30px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.2), rgba(0, 255, 0, 0.2), rgba(0, 0, 255, 0.2));
+            border-radius: 20px;
+            min-height: 140px;
+            color: #000;
+            border: 4px solid;
+            border-image: linear-gradient(45deg, #ffff00, #00ffff, #ff00ff) 1;
+            backdrop-filter: blur(15px);
+            font-weight: 600;
+        }
+
+        .response-header {
+            color: #000;
+            font-weight: 800;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 1.4em;
+            background: linear-gradient(45deg, #ff0000, #0000ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .response-header::before {
+            content: "🌈";
+            font-size: 1.8em;
+            animation: rainbowSpin 2s linear infinite;
+        }
+
+        @keyframes rainbowSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .colorful-badge {
+            background: linear-gradient(135deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1em;
+            margin: 8px;
+            display: inline-block;
+            border: 3px solid #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
+            color: #fff;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            animation: badgeRainbow 3s ease infinite;
+        }
+
+        @keyframes badgeRainbow {
+            0% { background: linear-gradient(135deg, #ff0000, #ffff00, #00ff00); }
+            33% { background: linear-gradient(135deg, #00ff00, #00ffff, #0000ff); }
+            66% { background: linear-gradient(135deg, #0000ff, #ff00ff, #ff0000); }
+            100% { background: linear-gradient(135deg, #ff0000, #ffff00, #00ff00); }
+        }
+
+        .bubble {
+            position: fixed;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+            animation: floatBubble 8s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes floatBubble {
+            0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.7; }
+            25% { transform: translateY(-100px) translateX(50px) scale(1.2); opacity: 0.9; }
+            50% { transform: translateY(-200px) translateX(-50px) scale(0.8); opacity: 0.5; }
+            75% { transform: translateY(-100px) translateX(-100px) scale(1.1); opacity: 0.8; }
+        }
+
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .rainbow-title {
+                font-size: 2.5em;
+            }
+            
+            .chat-container {
+                padding: 25px;
+                margin: 15px;
+            }
+            
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-text {
+                text-align: center;
+            }
+            
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            button {
+                padding: 18px;
+                font-size: 1.3em;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>🤖 ABDUL SAMAD INFO PORTAL</h1>
-      <p>Get Information About Abdul Samad - Young Web Developer</p>
-    </header>
-
-    <main>
-      <div class="profile-section">
-        <div class="profile-card">
-          <h2>👤 About Abdul Samad</h2>
-          <div class="profile-info">
-            <p><strong>Name:</strong> ABDUL SAMAD</p>
-            <p><strong>Age:</strong> 12 years</p>
-            <p><strong>DOB:</strong> 19-6-2013</p>
-            <p><strong>Father:</strong> ABDULLAH</p>
-            <p><strong>Profession:</strong> Web Development</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="chat-section">
-        <div class="chat-container">
-          <div id="chat-messages" class="chat-messages">
-            <div class="message bot-message">
-              👋 Welcome to Abdul Samad Information Portal!<br>
-              Ask me anything about Abdul Samad 🤖
-            </div>
-          </div>
-          <div class="input-section">
-            <input id="user-input" type="text" placeholder="💬 Ask about Abdul Samad...">
-            <button onclick="sendMessage()">🚀 Send</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="quick-actions">
-        <h3>⚡ Quick Information</h3>
-        <div class="action-buttons">
-          <button onclick="showPersonalInfo()">👤 Personal Info</button>
-          <button onclick="showSkills()">💻 Skills</button>
-          <button onclick="showProjects()">🚀 Projects</button>
-          <button onclick="showContact()">📞 Contact</button>
-          <button onclick="startGame()">🕹️ Play Pong!</button>
-        </div>
-      </div>
-    </main>
-  </div>
-
-  <div id="pong-container" style="display: none;">
-    <div id="scoreboard">
-      <span id="player-score">0</span> - <span id="computer-score">0</span>
+    <!-- Colorful Fog Effect -->
+    <div class="fog-container">
+        <div class="fog"></div>
+        <div class="fog2"></div>
     </div>
-    <canvas id="pong-canvas" width="600" height="400"></canvas>
-  </div>
 
-  <script>
-    // Chat Portal Functions
-    function addMessage(text, isUser = false) {
-      const chat = document.getElementById("chat-messages");
-      const div = document.createElement("div");
-      div.className = isUser ? "message user-message" : "message bot-message";
-      div.innerHTML = text;
-      chat.appendChild(div);
-      chat.scrollTop = chat.scrollHeight;
-    }
+    <!-- Floating Bubbles -->
+    <div class="bubble" style="width: 100px; height: 100px; top: 10%; left: 5%; animation-delay: 0s;"></div>
+    <div class="bubble" style="width: 150px; height: 150px; top: 20%; right: 10%; animation-delay: 1s;"></div>
+    <div class="bubble" style="width: 80px; height: 80px; bottom: 15%; left: 15%; animation-delay: 2s;"></div>
+    <div class="bubble" style="width: 120px; height: 120px; bottom: 25%; right: 5%; animation-delay: 3s;"></div>
 
-    function sendMessage() {
-      const inp = document.getElementById("user-input");
-      const msg = inp.value.trim();
-      if (!msg) return;
-      addMessage(msg, true);
-      inp.value = "";
-      setTimeout(() => {
-        addMessage("🤖 This is a demo chat for Abdul Samad Info Portal!")
-      }, 800);
-    }
+    <div class="chat-container">
+        <div class="header">
+            <h1 class="rainbow-title">ABDUL SAMAD</h1>
+            <p class="colorful-tagline">ULTRA COLORFUL WEB WARRIOR</p>
+        </div>
 
-    function showPersonalInfo() {
-      addMessage("👤 Name: Abdul Samad<br>🎂 Age: 12<br>📅 DOB: 19-6-2013<br>👨‍👦 Father: Abdullah<br>📚 Profession: Web Developer");
-    }
+        <div class="profile-section">
+            <img src="https://lh3.googleusercontent.com/a/ACg8ocJcvR3g_6ygg_yloKjb4kyMr_iTP_lAAqB5k4uxXD57Rco7Fj4=s288-c-no" 
+                 alt="Abdul Samad" 
+                 class="profile-image">
+            <div class="profile-text">
+                <div style="margin-bottom: 20px;">
+                    <span class="colorful-badge">💻 WEB MASTER</span>
+                    <span class="colorful-badge">🎯 AGE 12</span>
+                    <span class="colorful-badge">🚀 AI GENIUS</span>
+                </div>
+                <p style="color: #000; font-size: 1.4em; margin-top: 20px; font-weight: 800; text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);">
+                    "CODE IN ALL THE COLORS OF THE RAINBOW!"
+                </p>
+            </div>
+        </div>
 
-    function showSkills() {
-      addMessage("💻 Skills:<br>• HTML<br>• CSS<br>• JavaScript<br>🚀 Learning: Frontend Development");
-    }
+        <div class="info-grid">
+            <div class="info-card">
+                <strong>SUPERHERO NAME</strong>
+                <span>ABDUL SAMAD</span>
+            </div>
+            <div class="info-card">
+                <strong>POWER MISSION</strong>
+                <span>WEB DEVELOPMENT</span>
+            </div>
+            <div class="info-card">
+                <strong>HERO AGE</strong>
+                <span>12 YEARS</span>
+            </div>
+            <div class="info-card">
+                <strong>SPECIAL POWERS</strong>
+                <span>CODING & AI</span>
+            </div>
+            <div class="info-card" style="grid-column: span 2;">
+                <strong>MENTOR</strong>
+                <span>ABDULLAH</span>
+            </div>
+        </div>
 
-    function showProjects() {
-      addMessage("🚀 Projects:<br>• Portfolio Website<br>• Calculator App<br>• Quiz Game<br>🏆 Learning Projects");
-    }
+        <div class="input-section">
+            <input type="text" id="question" placeholder="ASK YOUR COLORFUL QUESTION HERE...">
+            <button onclick="answerQuestion()">GET RAINBOW ANSWER 🌈</button>
+        </div>
 
-    function showContact() {
-      addMessage("📞 Contact Abdul Samad for learning and collaboration!");
-    }
+        <div id="response">
+            <div class="response-header">COLORFUL RESPONSE</div>
+            <div id="answer-text">Ready to answer all your questions with colorful brilliance! Ask me anything! 🌟</div>
+        </div>
+    </div>
 
-    // Pong Game Functions
-    let canvas, ctx, ballX, ballY, ballSpeedX, ballSpeedY, playerY, computerY, playerScore, computerScore;
-    const PADDLE_HEIGHT = 100;
-    const PADDLE_WIDTH = 10;
-    const BALL_SIZE = 10;
+    <script>
+        function answerQuestion() {
+            const question = document.getElementById('question').value.toLowerCase();
+            const answerText = document.getElementById('answer-text');
+            let response = "";
 
-    function startGame() {
-      document.getElementById('pong-container').style.display = 'flex';
-      canvas = document.getElementById('pong-canvas');
-      ctx = canvas.getContext('2d');
+            // Create colorful effect
+            createColorfulEffect();
 
-      ballX = canvas.width / 2;
-      ballY = canvas.height / 2;
-      ballSpeedX = 5;
-      ballSpeedY = 5;
-      playerY = canvas.height / 2 - PADDLE_HEIGHT / 2;
-      computerY = canvas.height / 2 - PADDLE_HEIGHT / 2;
-      playerScore = 0;
-      computerScore = 0;
-
-      canvas.addEventListener('mousemove', function(evt) {
-        playerY = evt.clientY - canvas.offsetTop - PADDLE_HEIGHT / 2;
-      });
-
-      document.addEventListener('keydown', function(evt) {
-        if (evt.key === 'ArrowUp') {
-          playerY -= 30; // Move paddle up
-        } else if (evt.key === 'ArrowDown') {
-          playerY += 30; // Move paddle down
-        }
-      });
-
-      // Ensure paddles stay within the bounds
-      function clamp(value, min, max) {
-        return Math.min(Math.max(value, min), max);
-      }
-
-      function update() {
-        // Move paddles based on mouse/arrow keys
-        playerY = clamp(playerY, 0, canvas.height - PADDLE_HEIGHT);
-
-        // Move ball
-        ballX += ballSpeedX;
-        ballY += ballSpeedY;
-
-        // Computer AI
-        computerY += (ballY - computerY - PADDLE_HEIGHT / 2) * 0.1;
-        computerY = clamp(computerY, 0, canvas.height - PADDLE_HEIGHT);
-
-
-        // Bounce off top and bottom
-        if (ballY < 0 || ballY > canvas.height) {
-          ballSpeedY = -ballSpeedY;
-        }
-
-        // Bounce off paddles
-        if (ballX < PADDLE_WIDTH && ballY > playerY && ballY < playerY + PADDLE_HEIGHT) {
-          ballSpeedX = -ballSpeedX;
-          let deltaY = ballY - (playerY + PADDLE_HEIGHT / 2);
-          ballSpeedY = deltaY * 0.3;
-        }
-
-        if (ballX > canvas.width - PADDLE_WIDTH && ballY > computerY && ballY < computerY + PADDLE_HEIGHT) {
-          ballSpeedX = -ballSpeedX;
-          let deltaY = ballY - (computerY + PADDLE_HEIGHT / 2);
-          ballSpeedY = deltaY * 0.3;
-        }
-
-
-        // Score
-        if (ballX < 0) {
-          computerScore++;
-          resetBall();
-        }
-        if (ballX > canvas.width) {
-          playerScore++;
-          resetBall();
+            // Add typing animation
+            answerText.innerHTML = '<span style="color: #ff0000; font-weight: 800;">GENERATING COLORFUL RESPONSE...</span>';
+            
+            setTimeout(() => {
+                if (question.includes('name')) {
+                    response = "My colorful name is <span style='color: #ff0000; font-weight: 800;'>ABDUL SAMAD</span>! The most vibrant coder around! 🌈";
+                }
+                else if (question.includes('work') || question.includes('job') || question.includes('mission')) {
+                    response = "My superpower is <span style='color: #00ff00; font-weight: 800;'>WEB DEVELOPMENT</span>! Creating the most colorful websites in the universe! 💻";
+                }
+                else if (question.includes('age') || question.includes('old')) {
+                    response = "I'm <span style='color: #0000ff; font-weight: 800;'>12 YEARS</span> young and already painting the digital world with colors! 🎨";
+                }
+                else if (question.includes('hobby') || question.includes('power') || question.includes('skill')) {
+                    response = "My special skills include <span style='color: #ff00ff; font-weight: 800;'>RAINBOW CODING & COLORFUL AI</span>! Making the web more beautiful! ✨";
+                }
+                else if (question.includes('father') || question.includes('dad') || question.includes('mentor')) {
+                    response = "My awesome mentor is <span style='color: #ffff00; font-weight: 800;'>ABDULLAH</span>! Supporting my colorful coding journey! 👨‍👦";
+                }
+                else if (question.includes('photo') || question.includes('image') || question.includes('picture')) {
+                    response = "That's my colorful profile picture! Ready to brighten up the digital world! 📸";
+                }
+                else if (question.includes('hello') || question.includes('hi') || question.includes('hey')) {
+                    response = "Hello there! I'm Abdul Samad - the most colorful web developer you'll ever meet! 🌟";
+                }
+                else if (question.includes('how are you')) {
+                    response = "I'm feeling absolutely <span style='color: #00ffff; font-weight: 800;'>RAINBOW-TASTIC</span>! Ready to create colorful magic! 🎯";
+                }
+                else if (question.includes('color') || question.includes('colour')) {
+                    response = "I love ALL colors! <span style='color: #ff0000'>Red</span>, <span style='color: #ff8000'>Orange</span>, <span style='color: #ffff00'>Yellow</span>, <span style='color: #00ff00'>Green</span>, <span style='color: #00ffff'>Cyan</span>, <span style='color: #0000ff'>Blue</span>, <span style='color: #8000ff'>Purple</span>, <span style='color: #ff00ff'>Pink</span> - Every color is amazing! 🌈";
+                }
+                else if (question.includes('code') || question.includes('programming')) {
+                    response = "I code with <span style='color: #ff0000; font-weight: 800;'>HTML</span>, <span style='color: #00ff00; font-weight: 800;'>CSS</span>, <span style='color: #0000ff; font-weight: 800;'>JavaScript</span> and <span style='color: #ff00ff; font-weight: 800;'>AI</span> - Creating digital rainbows! ⚡";
+                }
+                else {
+                    response = "Ask me about my name, work, age, powers, mentor, or anything colorful! I love colorful questions! 💫";
+                }
+                
+                answerText.innerHTML = response;
+                
+            }, 1000);
         }
 
-        // Update Scoreboard
-        document.getElementById('player-score').textContent = playerScore;
-        document.getElementById('computer-score').textContent = computerScore;
-
-
-        // Draw everything
-        draw();
-      }
-
-      function draw() {
-        // Clear canvas
-        ctx.fillStyle = '#000';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        // Draw paddles
-        ctx.fillStyle = '#fff';
-        ctx.fillRect(0, playerY, PADDLE_WIDTH, PADDLE_HEIGHT);
-        ctx.fillRect(canvas.width - PADDLE_WIDTH, computerY, PADDLE_WIDTH, PADDLE_HEIGHT);
-
-        // Draw ball
-        ctx.beginPath();
-        ctx.arc(ballX, ballY, BALL_SIZE, 0, Math.PI * 2);
-        ctx.fillStyle = '#fff';
-        ctx.fill();
-      }
-
-
-      function resetBall() {
-        ballX = canvas.width / 2;
-        ballY = canvas.height / 2;
-        ballSpeedX = -ballSpeedX; // Reverse direction
-        ballSpeedY = 5; // Reset vertical speed
-      }
-
-      // Game loop
-      setInterval(update, 1000 / 60);
-
-      // Close Pong
-      document.addEventListener('keydown', function(evt) {
-        if (evt.key === 'Escape') {
-          document.getElementById('pong-container').style.display = 'none';
-          resetBall();
-          playerScore = 0;
-          computerScore = 0;
-          document.getElementById('player-score').textContent = playerScore;
-          document.getElementById('computer-score').textContent = computerScore;
+        function createColorfulEffect() {
+            for (let i = 0; i < 5; i++) {
+                const effect = document.createElement('div');
+                effect.className = 'bubble';
+                effect.style.width = Math.random() * 100 + 50 + 'px';
+                effect.style.height = effect.style.width;
+                effect.style.left = Math.random() * window.innerWidth + 'px';
+                effect.style.top = Math.random() * window.innerHeight + 'px';
+                effect.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(effect);
+                
+                setTimeout(() => {
+                    effect.remove();
+                }, 8000);
+            }
         }
-      });
 
-    }
-  </script>
+        // Enter key support
+        document.getElementById('question').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                answerQuestion();
+            }
+        });
+
+        // Add click effect to button
+        document.querySelector('button').addEventListener('click', function() {
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+        });
+
+        // Create random bubbles
+        setInterval(() => {
+            createColorfulEffect();
+        }, 2000);
+    </script>
 </body>
 </html>
 ```
